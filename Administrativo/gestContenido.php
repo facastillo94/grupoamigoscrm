@@ -775,13 +775,15 @@
 																	$fichero_subido = '';
 																}
 																if(intval($usuario['tpc_rol_usuario']) == 2){
-																	$con->query("INSERT INTO tp_establecimientos VALUES (NULL, '".$_POST['tpc_nombre_establecimiento']."', '".$_POST['tpc_categoria_establecimiento']."', '".$_POST['indicativoparticular'].$_POST['tpc_telparticular_establecimiento']."', '".$_POST['indicativomovil'].$_POST['tpc_movil_establecimiento']."', '".$_POST['tpc_email_establecimiento']."', '".$_POST['tpc_asignadoa_establecimiento']."', '".$_POST['tpc_tipodocumento_establecimiento']."', '".$_POST['tpc_numdocumento_establecimiento']."', '".$_POST['tpc_direccion_establecimiento']."', '".$_POST['tpc_pais_establecimiento']."', '".$_POST['tpc_departamento_establecimiento']."', '".$_POST['tpc_ciudad_establecimiento']."', '".$_POST['tpc_localidad_establecimiento']."', '".$_POST['tpc_videofundacion_establecimiento']."', '".$_POST['tpc_videoinversionista_establecimiento']."', '".$fichero_subido."', '', '', '".$_POST['tpc_aperturahabil_establecimiento']."', '".$_POST['tpc_cierrehabil_establecimiento']."', '".$_POST['tpc_aperturafinsemana_establecimiento']."', '".$_POST['tpc_cierrefinsemana_establecimiento']."', '".$_POST['tpc_sitioweb_establecimiento']."', '".$_POST['tpc_facebook_establecimiento']."', 'CRM', '".date("Y-m-d H:i:s")."', '".$_POST['tpc_hacedomicilios_establecimiento']."', '".$_POST['tpc_valordomicilio_establecimiento']."');");
+																	$con->query("INSERT INTO tp_establecimientos VALUES (NULL, '".$_POST['tpc_nombre_establecimiento']."', '".$_POST['tpc_categoria_establecimiento']."', '".$_POST['indicativoparticular'].$_POST['tpc_telparticular_establecimiento']."', '".$_POST['indicativomovil'].$_POST['tpc_movil_establecimiento']."', '".$_POST['tpc_email_establecimiento']."', '".$_POST['tpc_asignadoa_establecimiento']."', '".$_POST['tpc_tipodocumento_establecimiento']."', '".$_POST['tpc_numdocumento_establecimiento']."', '".$_POST['tpc_direccion_establecimiento']."', '".$_POST['tpc_pais_establecimiento']."', '".$_POST['tpc_departamento_establecimiento']."', '".$_POST['tpc_ciudad_establecimiento']."', '".$_POST['tpc_localidad_establecimiento']."', '".$_POST['tpc_estrato_establecimiento']."', '".$_POST['tpc_videofundacion_establecimiento']."', '".$_POST['tpc_videoinversionista_establecimiento']."', '".$fichero_subido."', '', '', '".$_POST['tpc_aperturahabil_establecimiento']."', '".$_POST['tpc_cierrehabil_establecimiento']."', '".$_POST['tpc_aperturafinsemana_establecimiento']."', '".$_POST['tpc_cierrefinsemana_establecimiento']."', '".$_POST['tpc_sitioweb_establecimiento']."', '".$_POST['tpc_facebook_establecimiento']."', 'CRM', '".date("Y-m-d H:i:s")."', '".$_POST['tpc_hacedomicilios_establecimiento']."', '".$_POST['tpc_valordomicilio_establecimiento']."');");
 																}else{
-																	$con->query("INSERT INTO tp_establecimientos VALUES (NULL, '".$_POST['tpc_nombre_establecimiento']."', '".$_POST['tpc_categoria_establecimiento']."', '".$_POST['tpc_telparticular_establecimiento']."', '".$_POST['tpc_movil_establecimiento']."', '".$_POST['tpc_email_establecimiento']."', '".$_POST['tpc_asignadoa_establecimiento']."', '".$_POST['tpc_tipodocumento_establecimiento']."', '".$_POST['tpc_numdocumento_establecimiento']."', '".$_POST['tpc_direccion_establecimiento']."', '".$_POST['tpc_pais_establecimiento']."', '".$_POST['tpc_departamento_establecimiento']."', '".$_POST['tpc_ciudad_establecimiento']."', '".$_POST['tpc_localidad_establecimiento']."', 'https://www.youtube.com/embed/Z4_9oZmamIo', '".$_POST['tpc_videoinversionista_establecimiento']."', '".$fichero_subido."', '', '', '".$_POST['tpc_aperturahabil_establecimiento']."', '".$_POST['tpc_cierrehabil_establecimiento']."', '".$_POST['tpc_aperturafinsemana_establecimiento']."', '".$_POST['tpc_cierrefinsemana_establecimiento']."', '".$_POST['tpc_sitioweb_establecimiento']."', '".$_POST['tpc_facebook_establecimiento']."', 'CRM', '".date("Y-m-d H:i:s")."', '".$_POST['tpc_hacedomicilios_establecimiento']."', '".$_POST['tpc_valordomicilio_establecimiento']."');");
+																	$con->query("INSERT INTO tp_establecimientos VALUES (NULL, '".$_POST['tpc_nombre_establecimiento']."', '".$_POST['tpc_categoria_establecimiento']."', '".$_POST['tpc_telparticular_establecimiento']."', '".$_POST['tpc_movil_establecimiento']."', '".$_POST['tpc_email_establecimiento']."', '".$_POST['tpc_asignadoa_establecimiento']."', '".$_POST['tpc_tipodocumento_establecimiento']."', '".$_POST['tpc_numdocumento_establecimiento']."', '".$_POST['tpc_direccion_establecimiento']."', '".$_POST['tpc_pais_establecimiento']."', '".$_POST['tpc_departamento_establecimiento']."', '".$_POST['tpc_ciudad_establecimiento']."', '".$_POST['tpc_localidad_establecimiento']."', '".$_POST['tpc_estrato_establecimiento']."', 'https://www.youtube.com/embed/Z4_9oZmamIo', '".$_POST['tpc_videoinversionista_establecimiento']."', '".$fichero_subido."', '', '', '".$_POST['tpc_aperturahabil_establecimiento']."', '".$_POST['tpc_cierrehabil_establecimiento']."', '".$_POST['tpc_aperturafinsemana_establecimiento']."', '".$_POST['tpc_cierrefinsemana_establecimiento']."', '".$_POST['tpc_sitioweb_establecimiento']."', '".$_POST['tpc_facebook_establecimiento']."', 'CRM', '".date("Y-m-d H:i:s")."', '".$_POST['tpc_hacedomicilios_establecimiento']."', '".$_POST['tpc_valordomicilio_establecimiento']."');");
 																}
 																$con->query("SELECT tpc_codigo_establecimiento FROM tp_establecimientos WHERE tpc_nombre_establecimiento='".$_POST['tpc_nombre_establecimiento']."' AND tpc_direccion_establecimiento='".$_POST['tpc_direccion_establecimiento']."' AND tpc_ciudad_establecimiento='".$_POST['tpc_ciudad_establecimiento']."'");
 																$con->next_record();
-																alatitudlongitud($_POST['tpc_direccion_establecimiento'], $_POST['tpc_ciudad_establecimiento'], $_POST['tpc_pais_establecimiento'], $con->f("tpc_codigo_establecimiento"), 0);
+																$tpc_codigo_establecimiento = $con->f("tpc_codigo_establecimiento");
+																$con->query("INSERT INTO tp_establecimientos_propietario VALUES (NULL, '".$_POST["tpc_nombres_establecimientos_propietario"]."', '".$_POST["tpc_apellidos_establecimientos_propietario"]."', '".$_POST["tpc_tipodocumento_establecimientos_propietario"]."', '".$_POST["tpc_documento_establecimientos_propietario"]."', '".$_POST["tpc_fechanacimiento_establecimientos_propietario"]."', '".$_POST["tpc_genero_establecimientos_propietario"]."', '".$_POST["tpc_celular_establecimientos_propietario"]."', '".$tpc_codigo_establecimiento."');");
+																alatitudlongitud($_POST['tpc_direccion_establecimiento'], $_POST['tpc_ciudad_establecimiento'], $_POST['tpc_pais_establecimiento'], $tpc_codigo_establecimiento, 0);
 																$mensaje="Establecimiento Creado Correctamente";
 															}else{
 																$mensaje="Error: No puede haber más de un establecimiento con la misma dirección y ciudad";
@@ -801,9 +803,15 @@
 																		$con->query("UPDATE tp_establecimientos SET tpc_imagen_establecimiento='".$fichero_subido."' WHERE tpc_codigo_establecimiento='".$_POST['tpc_codigo_establecimiento']."';");
 																	}
 																}
-																$con->query("UPDATE tp_establecimientos SET tpc_nombre_establecimiento='".$_POST['tpc_nombre_establecimiento']."', tpc_categoria_establecimiento='".$_POST['tpc_categoria_establecimiento']."', tpc_telparticular_establecimiento='".$_POST['tpc_telparticular_establecimiento']."', tpc_movil_establecimiento='".$_POST['tpc_movil_establecimiento']."', tpc_email_establecimiento='".$_POST['tpc_email_establecimiento']."', tpc_asignadoa_establecimiento='".$_POST['tpc_asignadoa_establecimiento']."', tpc_tipodocumento_establecimiento='".$_POST['tpc_tipodocumento_establecimiento']."', tpc_numdocumento_establecimiento='".$_POST['tpc_numdocumento_establecimiento']."', tpc_direccion_establecimiento='".$_POST['tpc_direccion_establecimiento']."', tpc_pais_establecimiento='".$_POST['tpc_pais_establecimiento']."', tpc_departamento_establecimiento='".$_POST['tpc_departamento_establecimiento']."', tpc_ciudad_establecimiento='".$_POST['tpc_ciudad_establecimiento']."', tpc_localidad_establecimiento='".$_POST['tpc_localidad_establecimiento']."', tpc_videofundacion_establecimiento='".$_POST['tpc_videofundacion_establecimiento']."', tpc_videoinversionista_establecimiento='".$_POST['tpc_videoinversionista_establecimiento']."', tpc_aperturahabil_establecimiento='".$_POST['tpc_aperturahabil_establecimiento']."', tpc_cierrehabil_establecimiento='".$_POST['tpc_cierrehabil_establecimiento']."', tpc_aperturafinsemana_establecimiento='".$_POST['tpc_aperturafinsemana_establecimiento']."', tpc_cierrefinsemana_establecimiento='".$_POST['tpc_cierrefinsemana_establecimiento']."', tpc_sitioweb_establecimiento='".$_POST['tpc_sitioweb_establecimiento']."', tpc_facebook_establecimiento='".$_POST['tpc_facebook_establecimiento']."', tpc_hacedomicilios_establecimiento='".$_POST['tpc_hacedomicilios_establecimiento']."', tpc_valordomicilio_establecimiento='".$_POST['tpc_valordomicilio_establecimiento']."' WHERE tpc_codigo_establecimiento='".$_POST['tpc_codigo_establecimiento']."';");
+																$con->query("UPDATE tp_establecimientos SET tpc_nombre_establecimiento='".$_POST['tpc_nombre_establecimiento']."', tpc_categoria_establecimiento='".$_POST['tpc_categoria_establecimiento']."', tpc_telparticular_establecimiento='".$_POST['tpc_telparticular_establecimiento']."', tpc_movil_establecimiento='".$_POST['tpc_movil_establecimiento']."', tpc_email_establecimiento='".$_POST['tpc_email_establecimiento']."', tpc_asignadoa_establecimiento='".$_POST['tpc_asignadoa_establecimiento']."', tpc_tipodocumento_establecimiento='".$_POST['tpc_tipodocumento_establecimiento']."', tpc_numdocumento_establecimiento='".$_POST['tpc_numdocumento_establecimiento']."', tpc_direccion_establecimiento='".$_POST['tpc_direccion_establecimiento']."', tpc_pais_establecimiento='".$_POST['tpc_pais_establecimiento']."', tpc_departamento_establecimiento='".$_POST['tpc_departamento_establecimiento']."', tpc_ciudad_establecimiento='".$_POST['tpc_ciudad_establecimiento']."', tpc_localidad_establecimiento='".$_POST['tpc_localidad_establecimiento']."', tpc_videofundacion_establecimiento='".$_POST['tpc_videofundacion_establecimiento']."', tpc_videoinversionista_establecimiento='".$_POST['tpc_videoinversionista_establecimiento']."', tpc_aperturahabil_establecimiento='".$_POST['tpc_aperturahabil_establecimiento']."', tpc_cierrehabil_establecimiento='".$_POST['tpc_cierrehabil_establecimiento']."', tpc_aperturafinsemana_establecimiento='".$_POST['tpc_aperturafinsemana_establecimiento']."', tpc_cierrefinsemana_establecimiento='".$_POST['tpc_cierrefinsemana_establecimiento']."', tpc_sitioweb_establecimiento='".$_POST['tpc_sitioweb_establecimiento']."', tpc_facebook_establecimiento='".$_POST['tpc_facebook_establecimiento']."', tpc_hacedomicilios_establecimiento='".$_POST['tpc_hacedomicilios_establecimiento']."', tpc_valordomicilio_establecimiento='".$_POST['tpc_valordomicilio_establecimiento']."', tpc_estrato_establecimiento='".$_POST['tpc_estrato_establecimiento']."' WHERE tpc_codigo_establecimiento='".$_POST['tpc_codigo_establecimiento']."';");
 																if($_POST['tpc_direccion_establecimiento'] != $tp_establecimientos['tpc_direccion_establecimiento'] || $_POST['tpc_ciudad_establecimiento'] != $tp_establecimientos['tpc_ciudad_establecimiento'] || $_POST['tpc_pais_establecimiento'] != $tp_establecimientos['tpc_pais_establecimiento']){
 																	alatitudlongitud($_POST['tpc_direccion_establecimiento'], $_POST['tpc_ciudad_establecimiento'], $_POST['tpc_pais_establecimiento'], $_POST["tpc_codigo_establecimiento"], 0);
+																}
+																$con->query("SELECT * FROM tp_establecimientos_propietario WHERE tpc_idestablecimiento_establecimientos_propietario = '".$_POST['tpc_codigo_establecimiento']."';");
+																if($con->num_rows() == 0){
+																	$con1->query("INSERT INTO tp_establecimientos_propietario VALUES (NULL, '".$_POST["tpc_nombres_establecimientos_propietario"]."', '".$_POST["tpc_apellidos_establecimientos_propietario"]."', '".$_POST["tpc_tipodocumento_establecimientos_propietario"]."', '".$_POST["tpc_documento_establecimientos_propietario"]."', '".$_POST["tpc_fechanacimiento_establecimientos_propietario"]."', '".$_POST["tpc_genero_establecimientos_propietario"]."', '".$_POST["tpc_celular_establecimientos_propietario"]."', '".$_POST['tpc_codigo_establecimiento']."');");
+																}else{
+																	$con1->query("UPDATE tp_establecimientos_propietario SET tpc_nombres_establecimientos_propietario='".$_POST["tpc_nombres_establecimientos_propietario"]."', tpc_apellidos_establecimientos_propietario='".$_POST["tpc_apellidos_establecimientos_propietario"]."', tpc_tipodocumento_establecimientos_propietario='".$_POST["tpc_tipodocumento_establecimientos_propietario"]."', tpc_documento_establecimientos_propietario='".$_POST["tpc_documento_establecimientos_propietario"]."', tpc_fechanacimiento_establecimientos_propietario='".$_POST["tpc_fechanacimiento_establecimientos_propietario"]."', tpc_genero_establecimientos_propietario='".$_POST["tpc_genero_establecimientos_propietario"]."', tpc_celular_establecimientos_propietario='".$_POST["tpc_celular_establecimientos_propietario"]."' WHERE tpc_idestablecimiento_establecimientos_propietario='".$_POST['tpc_codigo_establecimiento']."');");
 																}
 																$mensaje="Establecimiento Modificado Correctamente";
 															}else{
@@ -869,6 +877,73 @@
 																		<h3>Edición Masiva Establecimientos</h3>
 																		<form method="post" action="gestContenido.php" enctype="multipart/form-data">
 																			<table width="100%">
+																				<tr>
+																					<td align="center" colspan="4"><h3>INFORMACIÓN DEL PROPIETARIO</h3></td>
+																				</tr>
+																				<tr><td><br></td></tr>
+																				<tr style="height:60px;">
+																					<td width="20%" align="center">
+																						<label class="login2">Nombres</label>
+																					</td>
+																					<td width="30%">
+																						<input type="text" name="tpc_nombres_establecimientos_propietario" id="tpc_nombres_establecimientos_propietario" placeholder="Nombres..." class="form-control" required="required">
+																					</td>
+																					<td width="20%" align="center">
+																						<label class="login2">Apellidos</label>
+																					</td>
+																					<td width="30%">
+																						<input type="text" name="tpc_apellidos_establecimientos_propietario" id="tpc_apellidos_establecimientos_propietario" value="" class="form-control" style="width: 100%;" placeholder="Apellidos..." required="required">
+																					</td>
+																				</tr>
+																				<tr style="height:60px;">
+																					<td width="20%" align="center">
+																						<label class="login2">Tipo documento</label>
+																					</td>
+																					<td width="30%">
+																						<select name="tpc_tipodocumento_establecimientos_propietario" id="tpc_tipodocumento_establecimientos_propietario" class="form-control" required="required">
+																						   <option value="">Seleccione....</option>
+																						   <option value="Cedula">Cedula</option>
+																						   <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+																						</select>
+																					</td>
+																					<td width="20%" align="center">
+																						<label class="login2"># de documento</label>
+																					</td>
+																					<td width="30%">
+																						<input type="number" name="tpc_documento_establecimientos_propietario" id="tpc_documento_establecimientos_propietario" value="" class="form-control" style="width: 100%;" placeholder="# Documento..." required="required">
+																					</td>
+																				</tr>
+																				<tr>
+																					<td align="center" colspan="4">
+																						<label class="login2">Fecha nacimiento</label>
+																						<input type="date" style="width: 250px;" name="tpc_fechanacimiento_establecimientos_propietario" id="tpc_fechanacimiento_establecimientos_propietario" value="" class="form-control" style="width: 100%;" required="required">
+																					</td>
+																				</tr>
+																				<tr style="height:60px;">
+																					<td width="20%" align="center">
+																						<label class="login2">Genero</label>
+																					</td>
+																					<td width="30%">
+																						<select name="tpc_genero_establecimientos_propietario" id="tpc_genero_establecimientos_propietario" class="form-control" required="required">
+																						   <option value="">Seleccione....</option>
+																						   <option value="Masculino">Masculino</option>
+																						   <option value="Femenino">Femenino</option>
+																						   <option value="Otro">Otro</option>
+																						</select>
+																					</td>
+																					<td width="20%" align="center">
+																						<label class="login2">Celular</label>
+																					</td>
+																					<td width="30%">
+																						<input type="number" name="tpc_celular_establecimientos_propietario" id="tpc_celular_establecimientos_propietario" value="" class="form-control" style="width: 100%;" placeholder="Celular..." required="required">
+																					</td>
+																				</tr>
+																				<tr><td><br></td></tr>
+																				<tr>
+																					<td align="center" colspan="4"><h3>INFORMACIÓN DEL ESTABLECIMIENTO</h3></td>
+																				</tr>
+																				<tr><td><br></td></tr>
+																			
 																				<tr style="height:60px;">
 																					<td width="20%" align="center">
 																						<label class="login2">Imagen</label>
@@ -1217,6 +1292,20 @@
 																					</td>
 																				</tr>
 																				<tr style="height:60px;">
+																					<td colspan="4" align="center">
+																						<label class="login2">Estrato: </label>
+																						<select id="tpc_estrato_establecimiento" style="width: 150px;" class="form-control" name="tpc_estrato_establecimiento" required="required">
+																							<option value="">Seleccione....</option>
+																							<option value="1">1</option>
+																							<option value="2">2</option>
+																							<option value="3">3</option>
+																							<option value="4">4</option>
+																							<option value="5">5</option>
+																							<option value="6">6</option>
+																						 </select>
+																					</td>
+																				</tr>
+																				<tr style="height:60px;">
 																					<td colspan="4" align="center">';
 																					$cadena = '';
 																					for($i=1;$i<=$_POST['contador'];$i++){
@@ -1344,6 +1433,15 @@
 																	
 																	if($_POST['tpc_hacedomicilios_establecimiento'] != ''){$con->query("UPDATE tp_establecimientos SET tpc_hacedomicilios_establecimiento='".$_POST['tpc_hacedomicilios_establecimiento']."' WHERE tpc_codigo_establecimiento='".$arrCadena[$i]."';");}
 																	if($_POST['tpc_valordomicilio_establecimiento'] != ''){$con->query("UPDATE tp_establecimientos SET tpc_valordomicilio_establecimiento='".$_POST['tpc_valordomicilio_establecimiento']."' WHERE tpc_codigo_establecimiento='".$arrCadena[$i]."';");}
+																	
+																	if($_POST['tpc_estrato_establecimiento'] != ''){$con->query("UPDATE tp_establecimientos SET tpc_estrato_establecimiento='".$_POST['tpc_estrato_establecimiento']."' WHERE tpc_codigo_establecimiento='".$arrCadena[$i]."';");}
+																	
+																	$con->query("SELECT * FROM tp_establecimientos_propietario WHERE tpc_idestablecimiento_establecimientos_propietario = '".$arrCadena[$i]."';");
+																	if($con->num_rows() == 0){
+																		$con1->query("INSERT INTO tp_establecimientos_propietario VALUES (NULL, '".$_POST["tpc_nombres_establecimientos_propietario"]."', '".$_POST["tpc_apellidos_establecimientos_propietario"]."', '".$_POST["tpc_tipodocumento_establecimientos_propietario"]."', '".$_POST["tpc_documento_establecimientos_propietario"]."', '".$_POST["tpc_fechanacimiento_establecimientos_propietario"]."', '".$_POST["tpc_genero_establecimientos_propietario"]."', '".$_POST["tpc_celular_establecimientos_propietario"]."', '".$arrCadena[$i]."');");
+																	}else{
+																		$con1->query("UPDATE tp_establecimientos_propietario SET tpc_nombres_establecimientos_propietario='".$_POST["tpc_nombres_establecimientos_propietario"]."', tpc_apellidos_establecimientos_propietario='".$_POST["tpc_apellidos_establecimientos_propietario"]."', tpc_tipodocumento_establecimientos_propietario='".$_POST["tpc_tipodocumento_establecimientos_propietario"]."', tpc_documento_establecimientos_propietario='".$_POST["tpc_documento_establecimientos_propietario"]."', tpc_fechanacimiento_establecimientos_propietario='".$_POST["tpc_fechanacimiento_establecimientos_propietario"]."', tpc_genero_establecimientos_propietario='".$_POST["tpc_genero_establecimientos_propietario"]."', tpc_celular_establecimientos_propietario='".$_POST["tpc_celular_establecimientos_propietario"]."' WHERE tpc_idestablecimiento_establecimientos_propietario='".$arrCadena[$i]."');");
+																	}
 																}
 															}
 															$mensaje = 'Edición Masiva Ejecutada Correctamente';
@@ -2364,6 +2462,72 @@
 																<p>Ingresa todos los datos del nuevo establecimiento</p>
 																<form method="post" action="gestContenido.php" enctype="multipart/form-data">
 																	<table width="100%">
+																		<tr>
+																			<td align="center" colspan="4"><h3>INFORMACIÓN DEL PROPIETARIO</h3></td>
+																		</tr>
+																		<tr><td><br></td></tr>
+																		<tr style="height:60px;">
+																			<td width="20%" align="center">
+																				<label class="login2">Nombres</label>
+																			</td>
+																			<td width="30%">
+																				<input type="text" name="tpc_nombres_establecimientos_propietario" id="tpc_nombres_establecimientos_propietario" placeholder="Nombres..." class="form-control" required="required">
+																			</td>
+																			<td width="20%" align="center">
+																				<label class="login2">Apellidos</label>
+																			</td>
+																			<td width="30%">
+																				<input type="text" name="tpc_apellidos_establecimientos_propietario" id="tpc_apellidos_establecimientos_propietario" value="" class="form-control" style="width: 100%;" placeholder="Apellidos..." required="required">
+																			</td>
+																		</tr>
+																		<tr style="height:60px;">
+																			<td width="20%" align="center">
+																				<label class="login2">Tipo documento</label>
+																			</td>
+																			<td width="30%">
+																				<select name="tpc_tipodocumento_establecimientos_propietario" id="tpc_tipodocumento_establecimientos_propietario" class="form-control" required="required">
+																				   <option value="">Seleccione....</option>
+																				   <option value="Cedula">Cedula</option>
+																				   <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+																				</select>
+																			</td>
+																			<td width="20%" align="center">
+																				<label class="login2"># de documento</label>
+																			</td>
+																			<td width="30%">
+																				<input type="number" name="tpc_documento_establecimientos_propietario" id="tpc_documento_establecimientos_propietario" value="" class="form-control" style="width: 100%;" placeholder="# Documento..." required="required">
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="center" colspan="4">
+																				<label class="login2">Fecha nacimiento</label>
+																				<input type="date" style="width: 250px;" name="tpc_fechanacimiento_establecimientos_propietario" id="tpc_fechanacimiento_establecimientos_propietario" value="" class="form-control" style="width: 100%;" required="required">
+																			</td>
+																		</tr>
+																		<tr style="height:60px;">
+																			<td width="20%" align="center">
+																				<label class="login2">Genero</label>
+																			</td>
+																			<td width="30%">
+																				<select name="tpc_genero_establecimientos_propietario" id="tpc_genero_establecimientos_propietario" class="form-control" required="required">
+																				   <option value="">Seleccione....</option>
+																				   <option value="Masculino">Masculino</option>
+																				   <option value="Femenino">Femenino</option>
+																				   <option value="Otro">Otro</option>
+																				</select>
+																			</td>
+																			<td width="20%" align="center">
+																				<label class="login2">Celular</label>
+																			</td>
+																			<td width="30%">
+																				<input type="number" name="tpc_celular_establecimientos_propietario" id="tpc_celular_establecimientos_propietario" value="" class="form-control" style="width: 100%;" placeholder="Celular..." required="required">
+																			</td>
+																		</tr>
+																		<tr><td><br></td></tr>
+																		<tr>
+																			<td align="center" colspan="4"><h3>INFORMACIÓN DEL ESTABLECIMIENTO</h3></td>
+																		</tr>
+																		<tr><td><br></td></tr>
 																		<tr style="height:60px;">
 																			<td width="20%" align="center">
 																				<label class="login2">Imagen (Opcional)</label>
@@ -2733,6 +2897,20 @@
 																		</tr>
 																		<tr style="height:60px;">
 																			<td colspan="4" align="center">
+																				<label class="login2">Estrato: </label>
+																				<select id="tpc_estrato_establecimiento" style="width: 150px;" class="form-control" name="tpc_estrato_establecimiento" required="required">
+																					<option value="">Seleccione....</option>
+																					<option value="1">1</option>
+																					<option value="2">2</option>
+																					<option value="3">3</option>
+																					<option value="4">4</option>
+																					<option value="5">5</option>
+																					<option value="6">6</option>
+																				 </select>
+																			</td>
+																		</tr>
+																		<tr style="height:60px;">
+																			<td colspan="4" align="center">
 																				<input type="hidden" name="opc" id="opc" value="nuevo">
 																				<input type="hidden" name="tipo" id="tipo" value="contacto">
 																				<button class="btn btn-sm btn-primary login-submit-cs" type="submit">Guardar Establecimiento</button>
@@ -2744,10 +2922,77 @@
 														break;
 														case 'editar':
 															$tp_establecimientos = reg('tp_establecimientos', 'tpc_codigo_establecimiento', $_GET['tpc_codigo_establecimiento']);
+															$tp_establecimientos_propietario = reg('tp_establecimientos_propietario', 'tpc_idestablecimiento_establecimientos_propietario', $_GET['tpc_codigo_establecimiento']);
 															echo '<div class="basic-login-inner">
 																<h3>Editar Establecimiento</h3>
 																<form method="post" action="gestContenido.php" enctype="multipart/form-data">
 																	<table width="100%">
+																		<tr>
+																			<td align="center" colspan="4"><h3>INFORMACIÓN DEL PROPIETARIO</h3></td>
+																		</tr>
+																		<tr><td><br></td></tr>
+																		<tr style="height:60px;">
+																			<td width="20%" align="center">
+																				<label class="login2">Nombres</label>
+																			</td>
+																			<td width="30%">
+																				<input type="text" name="tpc_nombres_establecimientos_propietario" id="tpc_nombres_establecimientos_propietario" placeholder="Nombres..." value="'.$tp_establecimientos_propietario["tpc_nombres_establecimientos_propietario"].'" class="form-control" required="required">
+																			</td>
+																			<td width="20%" align="center">
+																				<label class="login2">Apellidos</label>
+																			</td>
+																			<td width="30%">
+																				<input type="text" name="tpc_apellidos_establecimientos_propietario" id="tpc_apellidos_establecimientos_propietario" class="form-control" value="'.$tp_establecimientos_propietario["tpc_apellidos_establecimientos_propietario"].'" style="width: 100%;" placeholder="Apellidos..." required="required">
+																			</td>
+																		</tr>
+																		<tr style="height:60px;">
+																			<td width="20%" align="center">
+																				<label class="login2">Tipo documento</label>
+																			</td>
+																			<td width="30%">
+																				<select name="tpc_tipodocumento_establecimientos_propietario" id="tpc_tipodocumento_establecimientos_propietario" class="form-control" required="required">
+																				   <option value="'.$tp_establecimientos_propietario["tpc_tipodocumento_establecimientos_propietario"].'">'.$tp_establecimientos_propietario["tpc_tipodocumento_establecimientos_propietario"].'</option>
+																				   <option value="Cedula">Cedula</option>
+																				   <option value="Cedula de extranjeria">Cedula de extranjeria</option>
+																				</select>
+																			</td>
+																			<td width="20%" align="center">
+																				<label class="login2"># de documento</label>
+																			</td>
+																			<td width="30%">
+																				<input type="number" name="tpc_documento_establecimientos_propietario" value="'.$tp_establecimientos_propietario["tpc_documento_establecimientos_propietario"].'" id="tpc_documento_establecimientos_propietario" class="form-control" style="width: 100%;" placeholder="# Documento..." required="required">
+																			</td>
+																		</tr>
+																		<tr>
+																			<td align="center" colspan="4">
+																				<label class="login2">Fecha nacimiento</label>
+																				<input type="date" style="width: 250px;" name="tpc_fechanacimiento_establecimientos_propietario" id="tpc_fechanacimiento_establecimientos_propietario" value="'.date("Y-m-d", strtotime($tp_establecimientos_propietario["tpc_documento_establecimientos_propietario"])).'" class="form-control" style="width: 100%;" required="required">
+																			</td>
+																		</tr>
+																		<tr style="height:60px;">
+																			<td width="20%" align="center">
+																				<label class="login2">Genero</label>
+																			</td>
+																			<td width="30%">
+																				<select name="tpc_genero_establecimientos_propietario" id="tpc_genero_establecimientos_propietario" class="form-control" required="required">
+																				   <option value="'.$tp_establecimientos_propietario["tpc_genero_establecimientos_propietario"].'">'.$tp_establecimientos_propietario["tpc_genero_establecimientos_propietario"].'</option>
+																				   <option value="Masculino">Masculino</option>
+																				   <option value="Femenino">Femenino</option>
+																				   <option value="Otro">Otro</option>
+																				</select>
+																			</td>
+																			<td width="20%" align="center">
+																				<label class="login2">Celular</label>
+																			</td>
+																			<td width="30%">
+																				<input type="number" value="'.$tp_establecimientos_propietario["tpc_celular_establecimientos_propietario"].'" name="tpc_celular_establecimientos_propietario" id="tpc_celular_establecimientos_propietario" class="form-control" style="width: 100%;" placeholder="Celular..." required="required">
+																			</td>
+																		</tr>
+																		<tr><td><br></td></tr>
+																		<tr>
+																			<td align="center" colspan="4"><h3>INFORMACIÓN DEL ESTABLECIMIENTO</h3></td>
+																		</tr>
+																		<tr><td><br></td></tr>
 																		<tr style="height:60px;">
 																			<td width="20%" align="center">
 																				<label class="login2">Imagen (Opcional)</label>
@@ -3103,6 +3348,20 @@
 																			</td>
 																			<td width="30%">
 																				<input type="number" name="tpc_valordomicilio_establecimiento" id="tpc_valordomicilio_establecimiento" value="'.$tp_establecimientos['tpc_valordomicilio_establecimiento'].'" class="form-control" min="0" style="width: 100%;" placeholder="Valor Domicilio..." required="required">
+																			</td>
+																		</tr>
+																		<tr style="height:60px;">
+																			<td colspan="4" align="center">
+																				<label class="login2">Estrato: </label>
+																				<select id="tpc_estrato_establecimiento" style="width: 150px;" class="form-control" name="tpc_estrato_establecimiento" required="required">
+																					<option value="'.$tp_establecimientos['tpc_estrato_establecimiento'].'">'.$tp_establecimientos['tpc_estrato_establecimiento'].'</option>
+																					<option value="1">1</option>
+																					<option value="2">2</option>
+																					<option value="3">3</option>
+																					<option value="4">4</option>
+																					<option value="5">5</option>
+																					<option value="6">6</option>
+																				 </select>
 																			</td>
 																		</tr>
 																		<tr style="height:60px;">
