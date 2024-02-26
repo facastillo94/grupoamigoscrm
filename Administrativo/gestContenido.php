@@ -212,6 +212,20 @@
 				document.getElementById(id).type='password';
 			}
 		}
+		function calcularinversion_usuario(){//CALCULAR INVERSIONES EN EDICION DE USUARIO
+			var cantidad_establecimientos = document.getElementById("cantidad_establecimientos").value;
+			var tpc_inversionestabs_usuario = document.getElementById("tpc_inversionestabs_usuario").value;
+			if(document.getElementById("tpc_porcinversion_usuario").value > 100){document.getElementById("tpc_porcinversion_usuario").value = 100;}
+			var tpc_porcinversion_usuario = document.getElementById("tpc_porcinversion_usuario").value;
+			var total_factura = new Intl.NumberFormat("en-US").format(tpc_inversionestabs_usuario * cantidad_establecimientos); 
+			document.getElementById("valorfactura_usuario").innerHTML = '$ '+total_factura;
+			var total_inversion = new Intl.NumberFormat("en-US").format(((tpc_inversionestabs_usuario * cantidad_establecimientos)/100) * tpc_porcinversion_usuario); 
+			document.getElementById("total_inversion").innerHTML = total_inversion;
+			var tpc_arbolesmes_usuario = document.getElementById("tpc_arbolesmes_usuario").value;
+			var tpc_inversionarbolesmes_usuario = document.getElementById("tpc_inversionarbolesmes_usuario").value;
+			var total_marboles = new Intl.NumberFormat("en-US").format(tpc_arbolesmes_usuario * tpc_inversionarbolesmes_usuario);
+			document.getElementById("total_inversion_menarboles").innerHTML = '$ '+total_marboles;
+		}
 		//******************************************
 	</script>
 </head>
@@ -283,7 +297,7 @@
 																}else{
 																	$fichero_subido = '';
 																}
-																$con->query("INSERT INTO tp_usuarios VALUES (NULL, '".$_POST['nombre']."', '".$_POST['apellido']."', '".$_POST['identificacion']."', '".$_POST['tipoidentificacion']."', '".$_POST['paistelefono'].$_POST['telefono']."', '".$_POST['direccion']."', '".$_POST['ciudad']."', '".$_POST['tpc_departamento_usuario']."', '".$_POST['pais']."', '0', '0', '".$_POST['correo']."','".$fichero_subido."', '".$_POST['rol']."', '".$_POST['usuario']."', '".md5($_POST['clave'])."', '1', '".date("Y-m-d H:i:s")."');");
+																$con->query("INSERT INTO tp_usuarios VALUES (NULL, '".$_POST['nombre']."', '".$_POST['apellido']."', '".$_POST['identificacion']."', '".$_POST['tipoidentificacion']."', '".$_POST['paistelefono'].$_POST['telefono']."', '".$_POST['direccion']."', '".$_POST['ciudad']."', '".$_POST['tpc_departamento_usuario']."', '".$_POST['pais']."', '0', '0', '".$_POST['correo']."','".$fichero_subido."', '".$_POST['rol']."', '".$_POST['usuario']."', '".md5($_POST['clave'])."', '1', '".date("Y-m-d H:i:s")."', '".$_POST['tpc_empresa_usuario']."', '".$_POST['tpc_areaencargada_usuario']."', '".$_POST['tpc_encargado_usuario']."', '".$_POST['tpc_cargoencargado_usuario']."', '".$_POST['tpc_celular_usuario']."', '".$_POST['tpc_inversionestabs_usuario']."', '".$_POST['tpc_porcinversion_usuario']."', '".$_POST['tpc_arbolesmes_usuario']."', '".$_POST['tpc_inversionarbolesmes_usuario']."');");
 																if(intval($_POST['rol']) == -1 || intval($_POST['rol']) == -2){//ACTUALIZA COORDENADAS DIRECCION ALIADOS PATROCINADORES
 																	$con->query("SELECT tpc_codigo_usuario FROM tp_usuarios WHERE tpc_nombres_usuario='".$_POST['nombre']."' AND tpc_apellidos_usuario='".$_POST['apellido']."' AND tpc_email_usuario='".$_POST['correo']."' AND tpc_rol_usuario='".$_POST['rol']."' AND tpc_nickname_usuario='".$_POST['usuario']."'");
 																	$con->next_record();
@@ -318,6 +332,7 @@
 																$con->query("SELECT * FROM tp_usuarios WHERE (tpc_codigo_usuario != '".$_POST['idusuario']."' AND tpc_nickname_usuario='".$_POST['usuario']."') OR (tpc_codigo_usuario != '".$_POST['idusuario']."' AND tpc_identificacion_usuario='".$_POST['identificacion']."');");
 																if($con->num_rows() == 0){
 																	$con->query("UPDATE tp_usuarios SET tpc_telefono_usuario='".$_POST['paistelefono'].$_POST['telefono']."', tpc_direccion_usuario='".$_POST['direccion']."', tpc_ciudad_usuario='".$_POST['ciudad']."', tpc_departamento_usuario='".$_POST['tpc_departamento_usuario']."', tpc_pais_usuario='".$_POST['pais']."', tpc_identificacion_usuario='".$_POST['identificacion']."', tpc_tipoident_usuario='".$_POST['tipoidentificacion']."', tpc_email_usuario='".$_POST['correo']."', tpc_rol_usuario='".$_POST['rol']."', tpc_nickname_usuario='".$_POST['usuario']."', tpc_nombres_usuario='".$_POST['nombre']."', tpc_apellidos_usuario='".$_POST['apellido']."' WHERE tpc_codigo_usuario='".$_POST['idusuario']."';");
+																	$con->query("UPDATE tp_usuarios SET tpc_empresa_usuario='".$_POST['tpc_empresa_usuario']."', tpc_areaencargada_usuario='".$_POST['tpc_areaencargada_usuario']."', tpc_encargado_usuario='".$_POST['tpc_encargado_usuario']."', tpc_cargoencargado_usuario='".$_POST['tpc_cargoencargado_usuario']."', tpc_celular_usuario='".$_POST['tpc_celular_usuario']."', tpc_inversionestabs_usuario = '".$_POST['tpc_inversionestabs_usuario']."', tpc_porcinversion_usuario = '".$_POST['tpc_porcinversion_usuario']."', tpc_arbolesmes_usuario = '".$_POST['tpc_arbolesmes_usuario']."', tpc_inversionarbolesmes_usuario = '".$_POST['tpc_inversionarbolesmes_usuario']."' WHERE tpc_codigo_usuario='".$_POST['idusuario']."';");
 																	$con->query("INSERT INTO tp_acciones_usuario VALUES (NULL, '".$mkid."', '".date("Y-m-d H:i:s")."', 'Se modifica el usuario con el nombre ".$_POST['usuario']."', '".$_SERVER['REMOTE_ADDR']."');");
 																	if($_POST['clave'] != ""){
 																		$con->query("UPDATE tp_usuarios SET tpc_pass_usuario='".md5($_POST['clave'])."' WHERE tpc_codigo_usuario='".$_POST['idusuario']."'");
@@ -1730,19 +1745,10 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Plan</label>
+																				<label class="login2">Empresa</label>
 																			</div>
 																			<div class="col-lg-8">
-																				<select name="rol" id="rol" class="form-control" required="required" onchange="mostrardiv_aliado()">
-																					<option value="">Seleccione.....</option>
-																					<option value="2">Administrador</option>
-																					<option value="-1">Plan Aliado Estrategico</option>
-																					<option value="0">Plan Gratuito</option>
-																					<option value="-4">Plan Inversionista Ultra</option>
-																					<option value="1">Plan Inversionista Premium</option>
-																					<option value="-3">Plan Patrocinador Ultra</option>
-																					<option value="-2">Plan Patrocinador Premium</option>
-																				</select>
+																				<input type="text" name="tpc_empresa_usuario" id="tpc_empresa_usuario" value="" class="form-control" style="width: 100%;" placeholder="Empresa..." required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -1774,7 +1780,48 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Nombres</label>
+																				<label class="login2">Area Encargada</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="text" name="tpc_areaencargada_usuario" id="tpc_areaencargada_usuario" value="" class="form-control" style="width: 100%;" placeholder="Area Encargada..." required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Encargad</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="text" name="tpc_encargado_usuario" id="tpc_encargado_usuario" value="" class="form-control" style="width: 100%;" placeholder="Encargado..." required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Cargo Encargado</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="text" name="tpc_cargoencargado_usuario" id="tpc_cargoencargado_usuario" value="" class="form-control" style="width: 100%;" placeholder="Cargo..." required="required">
+																			</div>
+																		</div>
+																	</div>
+												
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Correo</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="email" name="correo" id="correo" class="form-control" style="width: 100%;" placeholder="Correo..." value="" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Nombre Generico Usuario</label>
 																			</div>
 																			<div class="col-lg-8">
 																				<input type="text" name="nombre" id="nombre" maxlength="12" class="form-control" style="width: 100%;" placeholder="Nombres..." required="required">
@@ -1784,7 +1831,7 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Apellidos</label>
+																				<label class="login2">Apellido Generico Usuario</label>
 																			</div>
 																			<div class="col-lg-8">
 																				<input type="text" name="apellido" id="apellido" maxlength="12" class="form-control" style="width: 100%;" placeholder="Apellidos..." required="required">
@@ -1794,20 +1841,10 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Usuario</label>
+																				<label class="login2">Nick Usuario</label>
 																			</div>
 																			<div class="col-lg-8">
 																				<input type="text" name="usuario" id="usuario" class="form-control" style="width: 100%;" placeholder="Usuario..." required="required">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="form-group-inner">
-																		<div class="row">
-																			<div class="col-lg-4">
-																				<label class="login2">Correo</label>
-																			</div>
-																			<div class="col-lg-8">
-																				<input type="email" name="correo" id="correo" class="form-control" style="width: 100%;" placeholder="Correo..." required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -1829,10 +1866,20 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Telefono</label>
+																				<label class="login2">Celular</label>
 																			</div>
 																			<div class="col-lg-8">
-																				<input type="text" name="telefono" id="telefono" class="form-control" style="width: 100%;" placeholder="3123456789" required="required">
+																				<input type="number" name="tpc_celular_usuario" id="tpc_celular_usuario" class="form-control" value="" style="width: 100%;" placeholder="3001234567" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Fijo</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" name="telefono" id="telefono" class="form-control" style="width: 100%;" placeholder="6011234567" required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -1914,6 +1961,65 @@
 																					<option value="">Seleccione....</option>
 																					<option value="Colombia">Colombia</option>
 																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Plan</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<select name="rol" id="rol" class="form-control" required="required" onchange="mostrardiv_aliado()">
+																					<option value="">Seleccione.....</option>
+																					<option value="2">Administrador</option>
+																					<option value="-1">Plan Aliado Estrategico</option>
+																					<option value="0">Plan Gratuito</option>
+																					<option value="-4">Plan Inversionista Ultra</option>
+																					<option value="1">Plan Inversionista Premium</option>
+																					<option value="-3">Plan Patrocinador Ultra</option>
+																					<option value="-2">Plan Patrocinador Premium</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Inversión Por Establecimiento</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" name="tpc_inversionestabs_usuario" id="tpc_inversionestabs_usuario" class="form-control" style="width: 100%;" placeholder="Inversión Por Establecimiento...." required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">% De inversión</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" min="0" max="100" name="tpc_porcinversion_usuario" id="tpc_porcinversion_usuario" class="form-control" style="width: 100%;" placeholder="% De inversión" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Inversión por arbol</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" min="0" name="tpc_inversionarbolesmes_usuario" id="tpc_inversionarbolesmes_usuario" class="form-control" style="width: 100%;" placeholder="Inversion por arbol" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Arboles Mensuales</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" min="0" name="tpc_arbolesmes_usuario" id="tpc_arbolesmes_usuario" class="form-control" style="width: 100%;" placeholder="Arboles por mes" required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -2058,22 +2164,13 @@
 																				</div>
 																			</div>
 																		</div>
-																		<div class="form-group-inner">
+																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Plan</label>
+																				<label class="login2">Empresa</label>
 																			</div>
 																			<div class="col-lg-8">
-																				<select name="rol" id="rol" class="form-control" onchange="mostrardiv_aliado()">
-																					<option value="'.$con->f("tpc_rol_usuario").'">'.$rol.'</option>
-																					<option value="2">Administrador</option>
-																					<option value="-1">Plan Aliado Estrategico</option>
-																					<option value="0">Plan Gratuito</option>
-																					<option value="-4">Plan Inversionista Ultra</option>
-																					<option value="1">Plan Inversionista Premium</option>
-																					<option value="-3">Plan Patrocinador Ultra</option>
-																					<option value="-2">Plan Patrocinador Premium</option>
-																				</select>
+																				<input type="text" name="tpc_empresa_usuario" id="tpc_empresa_usuario" value="'.$con->f("tpc_empresa_usuario").'" class="form-control" style="width: 100%;" placeholder="Empresa..." required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -2105,7 +2202,48 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Nombres</label>
+																				<label class="login2">Area Encargada</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="text" name="tpc_areaencargada_usuario" id="tpc_areaencargada_usuario" value="'.$con->f("tpc_areaencargada_usuario").'" class="form-control" style="width: 100%;" placeholder="Area Encargada..." required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Encargad</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="text" name="tpc_encargado_usuario" id="tpc_encargado_usuario" value="'.$con->f("tpc_encargado_usuario").'" class="form-control" style="width: 100%;" placeholder="Encargado..." required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Cargo Encargado</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="text" name="tpc_cargoencargado_usuario" id="tpc_cargoencargado_usuario" value="'.$con->f("tpc_cargoencargado_usuario").'" class="form-control" style="width: 100%;" placeholder="Cargo..." required="required">
+																			</div>
+																		</div>
+																	</div>
+												
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Correo</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="email" name="correo" id="correo" class="form-control" style="width: 100%;" placeholder="Correo..." value="'.$con->f("tpc_email_usuario").'" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Nombre Generico Usuario</label>
 																			</div>
 																			<div class="col-lg-8">
 																				<input type="text" name="nombre" id="nombre" class="form-control" style="width: 100%;" placeholder="Nombres..." value="'.$con->f("tpc_nombres_usuario").'" required="required">
@@ -2115,7 +2253,7 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Apellidos</label>
+																				<label class="login2">Apellido Generico Usuario</label>
 																			</div>
 																			<div class="col-lg-8">
 																				<input type="text" name="apellido" id="apellido" class="form-control" style="width: 100%;" placeholder="Apellidos..." value="'.$con->f("tpc_apellidos_usuario").'" required="required">
@@ -2125,20 +2263,10 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Usuario</label>
+																				<label class="login2">Nick Usuario</label>
 																			</div>
 																			<div class="col-lg-8">
 																				<input type="text" name="usuario" id="usuario" class="form-control" style="width: 100%;" placeholder="Usuario..." value="'.$con->f("tpc_nickname_usuario").'" required="required">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="form-group-inner">
-																		<div class="row">
-																			<div class="col-lg-4">
-																				<label class="login2">Correo</label>
-																			</div>
-																			<div class="col-lg-8">
-																				<input type="email" name="correo" id="correo" class="form-control" style="width: 100%;" placeholder="Correo..." value="'.$con->f("tpc_email_usuario").'" required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -2160,10 +2288,20 @@
 																	<div class="form-group-inner">
 																		<div class="row">
 																			<div class="col-lg-4">
-																				<label class="login2">Telefono</label>
+																				<label class="login2">Celular</label>
 																			</div>
 																			<div class="col-lg-8">
-																				<input type="text" name="telefono" id="telefono" class="form-control" value="'.$con->f("tpc_telefono_usuario").'" style="width: 100%;" placeholder="3123456789" required="required">
+																				<input type="number" name="tpc_celular_usuario" id="tpc_celular_usuario" class="form-control" value="'.$con->f("tpc_celular_usuario").'" style="width: 100%;" placeholder="3001234567" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Fijo</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" name="telefono" id="telefono" class="form-control" value="'.$con->f("tpc_telefono_usuario").'" style="width: 100%;" placeholder="6011234567" required="required">
 																			</div>
 																		</div>
 																	</div>
@@ -2245,6 +2383,107 @@
 																					<option value="'.$con->f("tpc_pais_usuario").'">'.$con->f("tpc_pais_usuario").'</option>
 																					<option value="Colombia">Colombia</option>
 																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Plan</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<select name="rol" id="rol" class="form-control" onchange="mostrardiv_aliado()">
+																					<option value="'.$con->f("tpc_rol_usuario").'">'.$rol.'</option>
+																					<option value="2">Administrador</option>
+																					<option value="-1">Plan Aliado Estrategico</option>
+																					<option value="0">Plan Gratuito</option>
+																					<option value="-4">Plan Inversionista Ultra</option>
+																					<option value="1">Plan Inversionista Premium</option>
+																					<option value="-3">Plan Patrocinador Ultra</option>
+																					<option value="-2">Plan Patrocinador Premium</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2"># de Establecimientos</label>
+																			</div>
+																			<div class="col-lg-8">';
+																				$con1->query("SELECT COUNT(*) as cuenta_est FROM tp_establecimientos WHERE tpc_asignadoa_establecimiento='".$_GET['idusuario']."';");
+																				$con1->next_record();
+																				echo $con1->f("cuenta_est").'<input type="hidden" name="cantidad_establecimientos" id="cantidad_establecimientos" value="'.$con1->f("cuenta_est").'">';
+																		echo '</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Inversión Por Establecimiento</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" value="'.$con->f("tpc_inversionestabs_usuario").'" onchange="calcularinversion_usuario()" onkeyup="calcularinversion_usuario()" name="tpc_inversionestabs_usuario" id="tpc_inversionestabs_usuario" class="form-control" style="width: 100%;" placeholder="Inversión Por Establecimiento...." required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Valor de la factura</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<div id="valorfactura_usuario" style="width: 100%;"></div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">% De inversión</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" value="'.$con->f("tpc_porcinversion_usuario").'" onchange="calcularinversion_usuario()" onkeyup="calcularinversion_usuario()" min="0" max="100" name="tpc_porcinversion_usuario" id="tpc_porcinversion_usuario" class="form-control" style="width: 100%;" placeholder="% De inversión" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Total Inversión</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<div id="total_inversion" style="width: 100%;"></div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Inversión por arbol</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" value="'.$con->f("tpc_inversionarbolesmes_usuario").'" onchange="calcularinversion_usuario()" onkeyup="calcularinversion_usuario()" min="0" name="tpc_inversionarbolesmes_usuario" id="tpc_inversionarbolesmes_usuario" class="form-control" style="width: 100%;" placeholder="Inversion por arbol" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Arboles Mensuales</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<input type="number" value="'.$con->f("tpc_arbolesmes_usuario").'" onchange="calcularinversion_usuario()" onkeyup="calcularinversion_usuario()" min="0" name="tpc_arbolesmes_usuario" id="tpc_arbolesmes_usuario" class="form-control" style="width: 100%;" placeholder="Arboles por mes" required="required">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group-inner">
+																		<div class="row">
+																			<div class="col-lg-4">
+																				<label class="login2">Total Mensual Arboles</label>
+																			</div>
+																			<div class="col-lg-8">
+																				<div id="total_inversion_menarboles" style="width: 100%;"></div>
 																			</div>
 																		</div>
 																	</div>
@@ -2357,7 +2596,7 @@
 																			</div>
 																		</div>
 																	</div>
-																	<script>mostrardiv_aliado();</script>
+																	<script>mostrardiv_aliado();calcularinversion_usuario();</script>
 																	</form>
 																</div>';
 															}
